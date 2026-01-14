@@ -13,3 +13,12 @@ Streamlit Decision Support System (DSS) prototype to study museum crowding and h
 python -m venv .venv
 source .venv/bin/activate   # macOS/Linux
 pip install -r requirements.txt
+# museum-dss
+
+## Setup
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+## Run dashboard
+streamlit run dash/app.py
