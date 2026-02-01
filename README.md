@@ -1,24 +1,42 @@
-# museum-dss
+# Museum DSS — Crowding Analysis Dashboard
 
-Streamlit Decision Support System (DSS) prototype to study museum crowding and how flexible audio-guide segments affect dwell time and occupancy.
+A Streamlit-based **Decision Support System (DSS)** to analyze **museum crowding** and evaluate how **flexible audio-guide durations** and **visitor adherence** to the suggested sequence affect **dwell times**, **room occupancy**, and **overcrowding risk**.
 
-## Project structure
-- `dash/` : Streamlit UI (`app.py`)
-- `src/`  : simulation logic (backend)
-- `data/` : optional datasets (if any)
-- `tests/`: tests (later)
+The project includes:
+- a **simulation back-end** (stochastic arrivals + routing + dwell times + exit behavior),
+- an **interactive dashboard** for scenario configuration, Monte Carlo evaluation, visualization, and export.
 
-## Setup (local)
+
+
+## Repository Structure
+
+- `src/`
+  - `simulation_final2.py` — back-end engine: model assumptions, validation, sampling routines, simulation logic, KPI computation, Monte Carlo aggregation, heatmaps, occupancy bands.
+- `dash/`
+  - `app_final2.py` — front-end: Streamlit app (inputs, plots, scenarios, recommendations, export).
+- `Museum_DSS___Report.pdf` — final report (model + architecture + math + results).
+
+
+
+## Requirements
+
+- Python **3.9+** (recommended 3.10+)
+- Main packages: `streamlit`, `numpy`, `pandas`, `matplotlib`
+
+Install via `requirements.txt` (included in the repo).
+
+
+
+## Setup (Local)
+
 ```bash
 python -m venv .venv
-source .venv/bin/activate   # macOS/Linux
-pip install -r requirements.txt
-# museum-dss
-
-## Setup
-python -m venv .venv
+# macOS / Linux
 source .venv/bin/activate
+# Windows (PowerShell)
+# .venv\Scripts\Activate.ps1
+
 pip install -r requirements.txt
 
-## Run dashboard
-streamlit run dash/app.py
+streamlit run dash/app_final2.py
+
