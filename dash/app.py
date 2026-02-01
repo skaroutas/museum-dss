@@ -26,7 +26,7 @@ from src.simulation_final2 import (
     validate_threshold_df,
     build_threshold_series,
     run_period_monte_carlo_routing,
-
+    # piecewise arrivals helpers
     make_piecewise_profile_df,
     validate_piecewise_profile_df,
     build_lambda_by_minute_piecewise,
@@ -46,9 +46,10 @@ if "last_results" not in st.session_state:
 if "profile_key" not in st.session_state:
     st.session_state["profile_key"] = None
 
-# default for routing compliance
+
 if "p_audio_compliant" not in st.session_state:
     st.session_state["p_audio_compliant"] = 0.97
+
 
 
 def call_run_period(**kwargs):
@@ -213,7 +214,7 @@ st.sidebar.divider()
 st.sidebar.subheader("Visitor movement behavior")
 
 p_audio_compliant = st.sidebar.slider(
-    "Audio-guide adherence (%)",
+    "Audio-guide users (%)",
     0, 100,
     int(round(st.session_state["p_audio_compliant"] * 100)),
     1,
@@ -324,6 +325,8 @@ thr_series = build_threshold_series(
     advanced_thr_df=advanced_thr_df,
 )
 
+
+# Plot helpers
 
 def plot_heatmap(df: pd.DataFrame, open_minute: int, close_minute: int, bin_minutes: int, title: str, cbar_label: str):
     if df is None or df.empty:
@@ -475,6 +478,8 @@ def plot_scenario_audio_impact(scen_audio_df: pd.DataFrame):
     st.pyplot(fig, clear_figure=True)
 
 
+# Recommendations helper
+
 def propose_audio_adjustment_app(
     audio_df: pd.DataFrame,
     period_kpis: pd.DataFrame,
@@ -524,6 +529,8 @@ def propose_audio_adjustment_app(
         changes.append({"Room": room, "From": from_str, "To": to_str, "Reason": "High expected overload"})
 
     return new_df, pd.DataFrame(changes)
+
+
 
 
 st.markdown("## Run analysis")
@@ -621,6 +628,8 @@ bands_rooms_df = res.get("bands_rooms_df", pd.DataFrame())
 bands_total_df = res.get("bands_total_df", pd.DataFrame())
 
 
+# Tabs
+
 tab_overview, tab_rooms, tab_scenarios, tab_reco, tab_export = st.tabs(
     ["Overview", "Rooms", "Scenarios", "Recommendations", "Export"]
 )
@@ -633,6 +642,8 @@ def display_kpi_table(df: pd.DataFrame):
     view.columns = [c.replace("P95", "95th percentile") for c in view.columns]
     st.dataframe(view, use_container_width=True, hide_index=True)
 
+
+# Overview
 
 with tab_overview:
     st.subheader(f"Period overview — {res['d0']} → {res['d1']} ({res['period_days']} days)")
