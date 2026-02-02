@@ -13,7 +13,7 @@ The project includes:
 - `src/`
   - `simulation_final2.py` — back-end engine: model assumptions, validation, sampling routines, simulation logic, KPI computation, Monte Carlo aggregation, heatmaps, occupancy bands.
 - `dash/`
-  - `app_final2.py` — front-end: Streamlit app (inputs, plots, scenarios, recommendations, export).
+  - `app.py` — front-end: Streamlit app (inputs, plots, scenarios, recommendations, export).
 - `Museum_DSS___Report.pdf` — final report (model + architecture + math + results).
 
 
@@ -38,5 +38,5 @@ source .venv/bin/activate
 
 pip install -r requirements.txt
 
-streamlit run dash/app_final2.py
+streamlit run dash/app.py
 
